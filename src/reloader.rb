@@ -4,7 +4,7 @@ java_import java.lang.Runnable
 module Reloader
   FILES =  [
    #"./desktop.rb",
-   "./colorz.rb",
+   "./ship.rb",
    "./zredc.rb",
   ]
 
