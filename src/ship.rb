@@ -33,6 +33,7 @@ class Ship3d
 
     @transform.rotate(0,1,0,200) # y-axis
     @transform.rotate(0,0,1,15) # z-axis
+    puts 'Ship3d.init'
   end
 
   def accelerate

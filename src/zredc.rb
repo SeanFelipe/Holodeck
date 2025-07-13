@@ -31,15 +31,18 @@ class MainGame < ApplicationAdapter
   def setup_cruiser
     @builder = ModelBuilder.new
     @shape_renderer = ShapeRenderer.new
+    @cruiser = Ship3d.new(:cruiser)
   end
 
   def create
     Gdx::graphics::setContinuousRendering(false)
     @ww, @hh = Gdx::graphics::getWidth, Gdx::graphics::getHeight
+    $modelLoader = G3dModelLoader.new(UBJsonReader.new)
     set_input_processor
     setup_camera
     setup_cruiser
   end
+
 
   def render
     #Gdx::gl::gl_clear_color(0, 0.5, 0.2, 1)

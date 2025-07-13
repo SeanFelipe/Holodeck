@@ -60,7 +60,7 @@ imports = [
   'graphics.g3d.Material',
   #'graphics.g3d.Model',
   'graphics.g3d.ModelBatch',
-  #'graphics.g3d.ModelInstance',
+  'graphics.g3d.ModelInstance',
   #'graphics.g3d.Renderable',
   #'graphics.g3d.Shader',
   'graphics.g3d.attributes.ColorAttribute',
@@ -79,7 +79,7 @@ imports = [
   #'utils.Align',
   'utils.GdxNativesLoader',
   #'utils.TimeUtils',
-  #'utils.UBJsonReader',
+  'utils.UBJsonReader',
   #'utils.viewport.ScreenViewport',
   #'utils.viewport.FitViewport',
 ]
