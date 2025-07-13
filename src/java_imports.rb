@@ -56,7 +56,7 @@ imports = [
   #'graphics.g2d.SpriteBatch',
   #'graphics.g2d.BitmapFont',
   #'graphics.g2d.freetype.FreeTypeFontGenerator',
-  #'graphics.g3d.Environment',
+  'graphics.g3d.Environment',
   'graphics.g3d.Material',
   #'graphics.g3d.Model',
   'graphics.g3d.ModelBatch',

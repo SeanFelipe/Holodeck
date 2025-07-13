@@ -34,11 +34,27 @@ class MainGame < ApplicationAdapter
     @cruiser = Ship3d.new(:cruiser)
   end
 
+  def setup_environment
+    # Finally we want some light, or we wont see our color.  The environment gets passed in during
+    # the rendering process.  Create one, then create an Ambient ( non-positioned, non-directional ) light.
+    $environment = Environment.new
+    #@environment.set(ColorAttribute.new(ColorAttribute::AmbientLight, 0.8, 0.8, 0.8, 1.0))
+    #@environment.set(ColorAttribute.new(ColorAttribute::AmbientLight, 0.2, 0.2, 0.2, 0.2))
+    $environment.set(ColorAttribute.new(ColorAttribute::AmbientLight, 1.0, 1.0, 1.0, 1.0))
+
+    #add_point_lights
+    #front_of_ship if $cruiser != nil
+  end
+
   def create
     Gdx::graphics::setContinuousRendering(false)
     @ww, @hh = Gdx::graphics::getWidth, Gdx::graphics::getHeight
+
+    $modelBatch = ModelBatch.new
     $modelLoader = G3dModelLoader.new(UBJsonReader.new)
+
     set_input_processor
+    setup_environment
     setup_camera
     setup_cruiser
   end
@@ -49,7 +65,12 @@ class MainGame < ApplicationAdapter
     #Gdx::gl::gl_clear_color(0.5, 0.5, 0.5, 1)
     Gdx::gl::gl_clear_color(0.2, 0.2, 0.2, 1)
     Gdx::gl::gl_clear(GL20::GL_COLOR_BUFFER_BIT | GL20::GL_DEPTH_BUFFER_BIT)
-    end
+
+    $camera.update
+    $modelBatch.begin($camera)
+    $modelBatch.render(@cruiser.model, $environment)
+    $modelBatch.end
+  end
 
   def dispose
   end
