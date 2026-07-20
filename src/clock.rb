@@ -17,7 +17,7 @@ module RedTimer
       puts "#{self.class} run"
       #$cruiser.update(Gdx::graphics::getDeltaTime)
       #update_task_render
-      request_render
+      #request_render
     end
   end
 end
