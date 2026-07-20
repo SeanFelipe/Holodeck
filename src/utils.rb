@@ -1,20 +1,23 @@
-$desktop = true
-FileRoot = "#{ENV['REDC_START_DIR']}/assets"
+if ENV.include? 'ZOMG_DESKTOP'
+  if ENV['ZOMG_DESKTOP'] == 'true'
+    $desktop = true
+    FileRoot = "#{ENV['REDC_HOME']}/assets/"
+  end
+else
+  FileRoot = ''
+  $scale = 1
+end
 
 def libgdx_version
   llog("version: #{com::badlogic::gdx::Version::VERSION}")
   return com::badlogic::gdx::Version::VERSION
 end
 
+
 def fh(path)
-  Gdx::files::internal("#{FileRoot}/#{path}")
+  Gdx::files::internal("#{FileRoot}#{path}")
 end
 alias :fhook :fh
-
-def sh(shader_file)
-  Gdx::files::internal("#{FileRoot}/../src/shaders/#{shader_file}")
-end
-alias :shader_hook :sh
 
 def llog(*args)
   puts '-------------------------'
