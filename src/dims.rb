@@ -1,0 +1,12 @@
+module Dims
+  BASEDIR = Dir.pwd
+  WORKBOX_SIZE = 100
+  FULL = WORKBOX_SIZE
+  HALF = WORKBOX_SIZE / 2
+  QUARTER = WORKBOX_SIZE / 4
+
+  FRX = HALF * -1 + 5
+  FRY = FULL - 5
+  FRZ = -10
+end
+

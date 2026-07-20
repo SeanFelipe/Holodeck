@@ -11,12 +11,13 @@ ten80 = 1080 / 3
 #new_feb = 400
 #$worldx = ten80
 #$worldy = $worldx * 1.7777
-$worldx = 800
-$worldy = 600
+$worldx = 1200
+$worldy = 1024
 $scale = 1
 #configuration.width = $worldx / $scale
 #configuration.height = $worldy / $scale  # 16:9 aspect ratio
 #configuration.height = configuration.width * 1.644  # Gdx.graphics.getWidth motox getHeight from the phone is 720, 1184
+configuration.setWindowedMode($worldx, $worldy)
 configuration.resizable = true
 
 

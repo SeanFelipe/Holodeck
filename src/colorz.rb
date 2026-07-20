@@ -1,1 +1,1 @@
-$blueval = 0.9
+$blueval = 0.5

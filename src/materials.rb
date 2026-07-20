@@ -14,3 +14,8 @@ module Materials
   WALL_BLACK  = Material.new(ColorAttribute.createDiffuse(Color.new(0, 0, 0, 1)))
   DOOR  = Material.new(ColorAttribute.createDiffuse(Color::TEAL))
 end
+
+def setup_texture_material(texture)
+  $tmat = Material.new(Attribute.createDiffuse(Color::VIOLET))
+end
+

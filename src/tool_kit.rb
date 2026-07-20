@@ -1,12 +1,9 @@
 module TK
   class << self
-    def mb; @@mb; end
-    def sbatch; @@sbatch; end
-    def font; @@font; end
+    def batch; @@batch; end
 
     def init
-      @@sbatch = SpriteBatch.new
-      @@mb = ModelBatch.new
+      @@batch = SpriteBatch.new
     end
   end
 end

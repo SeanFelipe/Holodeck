@@ -1,23 +1,21 @@
-if ENV.include? 'ZOMG_DESKTOP'
-  if ENV['ZOMG_DESKTOP'] == 'true'
-    $desktop = true
-    FileRoot = "#{ENV['REDC_HOME']}/assets/"
-  end
-else
-  FileRoot = ''
-  $scale = 1
-end
+$desktop = true
+FileRoot = "#{ENV['REDC_START_DIR']}/assets"
 
 def libgdx_version
   llog("version: #{com::badlogic::gdx::Version::VERSION}")
   return com::badlogic::gdx::Version::VERSION
 end
 
-
 def fh(path)
-  Gdx::files::internal("#{FileRoot}#{path}")
+  Gdx::files::internal("#{FileRoot}/#{path}")
 end
 alias :fhook :fh
+
+def sh(fname)
+  #Gdx::files::internal("#{FileRoot}/../src/shaders/#{shader_file}")
+  Gdx::files::internal("src/shaders/#{fname}.glsl").readString
+end
+alias :shader_hook :sh
 
 def llog(*args)
   puts '-------------------------'
@@ -51,6 +49,19 @@ def rotation_vec3(axis)
   Vector3.new(vs[axis].to_java(:float))
 end
 alias :rv3 :rotation_vec3
+
+def rotation_quaternion(instance, axis, degrees)
+  qpre = instance.transform.getRotation(Quaternion.new)
+  vs = {
+    :x => Vector3.new(1.0,0.0,0.0),
+    :y => Vector3.new(0.0,1.0,0.0),
+    :z => Vector3.new(0.0,0.0,1.0),
+  }
+  vec = vs.fetch(axis)
+  qpost = Quaternion.new(vec, degrees)
+  instance.transform.set(qpost.mul(qpre).nor)
+end
+alias :rotate_q :rotation_quaternion
 
 def render
   Gdx::graphics::requestRendering

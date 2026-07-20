@@ -3,16 +3,9 @@ java_import java.lang.Runnable
 
 module Reloader
   FILES =  [
-   #"./reloader.rb",
-   #"./contents.rb",
-   #"./figures.rb",
-   #"./mux.rb",
-   #"./workbox.rb",
-   #"./dims.rb",
-   #"./camera.rb",
-   #"./apartment.rb",
-   #"./zredc.rb",
-   "./texture_stick.rb",
+   #"./desktop.rb",
+   "./colorz.rb",
+   "./zredc.rb",
   ]
 
   BASE_DIR = Dir.pwd
@@ -20,36 +13,33 @@ module Reloader
   class ReloadRequest
     include Runnable
     def run
-      Reloader.reload
+      $redc.render
+      puts "ReloadRequest.run"
     end
   end
 
   class << self
     def reload(from_listener=false)
-      $hotreload = true
-
       basedir = BASE_DIR
       basedir += '/src' if from_listener
       puts "start reload from dir: #{basedir}"
       $VERBOSE = nil
       FILES.each do |ff|
         path = "#{basedir}/#{ff}"
-        puts "loading #{path}..."
-        load path
+        print "loading #{path}..."
+        result = load path
+        print "#{result}\n"
+        #puts "load #{path} complete."
+        #binding.pry
       end
-      #puts "reloaded files:"
-      #FILES.each {|ff| puts ff}
-      #Workbox.setup
-      #Contents.add_workbox_contents
-      #Camera.setup
-      #Contents.c = []
-      TextureStick.init
-      #puts "post-reload, workbox contents: #{Contents.c}"
+      puts "reloaded files:"
+      FILES.each {|ff| puts ff}
+      post_reload
     end
 
     def post_reload
+      puts "posting render request..."
       Gdx::app::postRunnable(ReloadRequest.new)
     end
   end
 end
-

@@ -1,19 +1,23 @@
-require_relative 'all'
 require 'java'
+require_relative 'utils'
 
-class UpdateTask < TimerTask
-  def initialize; puts "#{self.class} initialize"; end
-  def run
-    #puts "#{self.class} run"
-    #$meshes.update
-  end
-end
-
-class RedTimer < Timer
+module RedTimer
   DELAY = 100
-  #DELAY = 1000
-  def initialize
-    super
-    self.scheduleAtFixedRate(UpdateTask.new, 0, DELAY)
+  class << self
+    def init
+      @@timer = Timer.new
+    end
+    def flip(delay=0)
+      @@timer.schedule(UpdateTask.new, delay)
+    end
+  end
+
+  class UpdateTask < TimerTask
+    def run
+      puts "#{self.class} run"
+      #$cruiser.update(Gdx::graphics::getDeltaTime)
+      #update_task_render
+      request_render
+    end
   end
 end
