@@ -8,6 +8,9 @@ gdx_jars = [
   'gdx-jnigen-loader-2.5.2.jar',
   'gdx-backend-lwjgl3-1.13.5.jar', # 3N5-109p not the glfw dependency
   'gdx-platform-1.13.5-natives-desktop.jar',
+  'lwjgl-glfw-natives-linux.jar',
+  'lwjgl-natives-linux.jar',
+  'lwjgl-opengl-natives-linux.jar',
   'lwjgl-glfw-natives-macos-arm64.jar',
   'lwjgl-glfw.jar',
   'lwjgl-natives-macos-arm64.jar',
