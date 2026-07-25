@@ -1,7 +1,7 @@
 require 'pry-debugger-jruby'
 require_relative 'java_imports'
 require_relative 'colorz'
-
+require_relative 'mux'
 
 
 class MainGame < ApplicationAdapter
@@ -10,6 +10,8 @@ class MainGame < ApplicationAdapter
   def create
     Gdx::graphics::setContinuousRendering(false)
     $ww, $hh = Gdx::graphics::getWidth, Gdx::graphics::getHeight
+    Gdx.input.setInputProcessor(ZomgMuxer.new)
+
   end
 
   def render
